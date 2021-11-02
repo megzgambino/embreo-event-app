@@ -11,8 +11,8 @@ module.exports = {
       EventId: {
         type: Sequelize.INTEGER
       },
-      date: {
-        type: Sequelize.STRING
+      dates: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       createdAt: {
         allowNull: false,

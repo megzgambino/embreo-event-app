@@ -14,6 +14,9 @@ module.exports = {
       status: {
         type: Sequelize.STRING
       },
+      dates: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
       location: {
         type: Sequelize.STRING
       },
