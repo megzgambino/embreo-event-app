@@ -16,7 +16,12 @@ module.exports = (sequelize, DataTypes) => {
   };
   Event.init({
     name: DataTypes.STRING,
-    status: DataTypes.STRING,
+    status: {
+      type: DataTypes.STRING,
+      validate: {
+        isIn:[['Approve', 'Pending']]
+      }
+    },
     dates: DataTypes.ARRAY(DataTypes.STRING),
     location: DataTypes.STRING,
     UserId: DataTypes.INTEGER

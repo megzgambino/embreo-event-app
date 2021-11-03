@@ -49,17 +49,41 @@ module.exports = class EventControllers {
             UserId
         })
         .then((event) => {
-            // console.log(event.dates)
+            
             Dates.create({
                 EventId: event.id,
                 dates: event.dates
             })
-            // .then((date) => {
-            //     console.log(date)
-            // })
             
-
             res.status(201).json(event)  
+        })
+        .catch(err => res.status(500).json(err))
+    }
+
+    static updateStatus(req, res) {
+        let { status } = req.body
+        let { id } = req.params
+ 
+        Event.update({status}, {
+            where: {
+                id
+            }, returning: true
+        })
+        .then((event) => {
+            res.status(200).json(event[1][0])
+        })
+        .catch(err => res.status(500).json(err))
+    }
+
+    static deleteEvent (req, res) {
+        let { id } = req.params
+        Event.destroy({
+            where: {
+                id
+            }
+        })
+        .then((event) => {
+            res.status(200).json({message: 'event has been deleted!'})
         })
         .catch(err => res.status(500).json(err))
     }
