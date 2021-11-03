@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch} from 'react-redux'
 import { useHistory } from 'react-router'
 import { userLogin } from '../store/actions/userActions'
 import Swal from 'sweetalert2'
@@ -7,8 +7,6 @@ import Swal from 'sweetalert2'
 export default function Login() {
     const dispatch = useDispatch()
     const history = useHistory()
-    const access_token = useSelector(state => state.state)
-
     const [input, setInput] = useState()
 
     function handleOnChangeInput(e) {
@@ -19,7 +17,15 @@ export default function Login() {
     function handleOnClickLogin() {
         dispatch(userLogin(input))
         history.push('/')
-        
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Login Success!',
+            showConfirmButton: false,
+            timer: 1500
+        })
+       
+            
     }
 
     return (

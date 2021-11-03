@@ -2,7 +2,11 @@ const initialState = {
     events : [],
     event : {},
     users : [],
-    access_token : ''
+    user: {
+        access_token : '',
+        username : '',
+        type : ''
+    }
 }
 
 
@@ -29,7 +33,7 @@ function reducer(state = initialState, action) {
         return newState
     } else if (action.type === 'LOGIN_USER') {
         const newState = {
-            ...state, access_token: action.payload
+            ...state, user: action.payload
         }
         return newState
     }

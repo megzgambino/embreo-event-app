@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router'
+import Swal from 'sweetalert2'
 
 export default function Navbar() {
-    const access_token = useSelector((state) => state.access_token)
-    // const access_token = localStorage.getItem('access_token')
+    const access_token = useSelector((state) => state.user.access_token)
+    const history = useHistory()
     const dispatch = useDispatch()
     useEffect(() => {}, [access_token])
 
@@ -12,7 +14,15 @@ export default function Navbar() {
         // localStorage.clear()
         dispatch({
             type: 'USER_LOGIN',
-            payload: false,
+            payload: false
+        })
+        history.push('/login')
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Logout Success!',
+            showConfirmButton: false,
+            timer: 1500
         })
     }
 

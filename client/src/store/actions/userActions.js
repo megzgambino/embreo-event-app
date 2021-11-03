@@ -10,9 +10,14 @@ export const userLogin = (user) => (dispatch) => {
     .then(({data}) => {
         // console.log(data)
         localStorage.setItem('access_token', data.access_token)
+        const neededData = {
+            access_token : data.access_token,
+            type : data.type,
+            username : data.username
+        }
         dispatch({
             type: 'LOGIN_USER',
-            payload: data.access_token
+            payload: neededData
         })
     })
     .catch(err => console.log(err))
