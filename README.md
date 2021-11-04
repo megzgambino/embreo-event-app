@@ -10,7 +10,7 @@
 
 ## Usage
 
-  1. Run the server by executing `node server` or `nodemon server` inside the `server` folder if you have nodemon installed.
+  1. Run the server by executing `node app` or `nodemon app` inside the `server` folder if you have nodemon installed.
   2. Run the client by executing `npm start` inside the `client` folder
 
 
