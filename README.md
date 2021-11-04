@@ -1,6 +1,6 @@
 # embreo-event-app
 
-## Setup (For Budget App)
+## Setup
 
   1. Please ensure you have `node`, `npm`, `nodemon` and `sequelize-cli` installed globally on your machine.
   2. Go to Server, Client Folder and Execute `npm i` script to install all the depedencies needed.
