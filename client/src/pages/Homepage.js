@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchEvents } from '../store/actions/eventActions'
+import { fetchEvents, updateStatus } from '../store/actions/eventActions'
 import { Modal } from 'react-bootstrap'
 
 export default function Homepage() {
@@ -9,16 +9,17 @@ export default function Homepage() {
     const user = useSelector((state) => state.user)
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
-    const handleShow = () => setShow(true)
+    const handleShow = (event) => setShow(true, event)
 
     useEffect(() => {
         dispatch(fetchEvents())
         // eslint-disable-next-line
-    }, [])
+    }, [events])
 
-    function onClickHandleApprove() {}
-
-    function onClickHandleDelete() {}
+    function onClickHandleApprove(id) {
+        // console.log(e)
+        dispatch(updateStatus({id, status: 'Approve'}))
+    }
 
     return (
         <div className="my-auto">
@@ -38,7 +39,7 @@ export default function Homepage() {
                 </thead>
                 {events.map((event) => {
                     return (
-                        <tbody>
+                        <tbody key={event.id}>
                             <tr>
                                 <td>{event.name}</td>
                                 <td>{event.dates}</td>
@@ -48,7 +49,7 @@ export default function Homepage() {
                                 <td>
                                     <button
                                         type="button"
-                                        onClick={(event) => handleShow(event)}
+                                        onClick={() => handleShow(event)}
                                         class="btn btn-primary"
                                     >
                                         Detail
@@ -73,24 +74,17 @@ export default function Homepage() {
                                                 Status: {event.status}
                                             </p>
                                             <p className="text-center">
-                                                Vendor Name:{' '}
+                                                Vendor Name:
                                                 {event.User.username}
                                             </p>
                                         </Modal.Body>
                                     </Modal>
                                     <button
                                         type="button"
-                                        onClick={() => onClickHandleApprove()}
+                                        onClick={() => onClickHandleApprove(event.id)}
                                         class="btn btn-success"
                                     >
                                         Approve
-                                    </button>
-                                    <button
-                                        type="button"
-                                        onClick={() => onClickHandleDelete()}
-                                        class="btn btn-danger"
-                                    >
-                                        Delete
                                     </button>
                                 </td>
                             </tr>

@@ -48,8 +48,9 @@ export const getEvent = (id) => (dispatch) => {
 export const updateStatus = ({id, status}) => (dispatch) => {
     axios({
         method: 'PATCH',
-        url: `http://localhost:4000/events/${id}`,
+        url: `http://localhost:4000/events`,
         data: {
+            id,
             status
         }
     })

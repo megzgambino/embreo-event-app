@@ -20,8 +20,8 @@ app.get('/users', UserController.findAllUser)
 app.get('/events', EventController.showAllEvent)
 app.get('/events/:id', EventController.showEvent)
 app.post('/events', EventController.createEvent)
-app.delete('/events/:id', EventController.deleteEvent)
-app.patch('/events/:id', EventController.updateStatus)
+app.delete('/events', EventController.deleteEvent)
+app.patch('/events', EventController.updateStatus)
 
 
 server.listen(PORT, () => {

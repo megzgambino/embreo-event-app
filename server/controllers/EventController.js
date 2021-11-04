@@ -61,8 +61,7 @@ module.exports = class EventControllers {
     }
 
     static updateStatus(req, res) {
-        let { status } = req.body
-        let { id } = req.params
+        let { id, status } = req.body
  
         Event.update({status}, {
             where: {
